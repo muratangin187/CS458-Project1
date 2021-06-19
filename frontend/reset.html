@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>SRS Forget Password</title>
+</head>
+<body>
+    <div class="container" style="width:70vh">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">Bilkent - SRS</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/reset.html">Reset password</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <div style="text-align: center;">
+            <div id="centerdiv">
+                <img src="logo.jpg" alt="">
+                <div style="padding-bottom: 30px">
+                    <h1>Bilkent University</h1>
+                    <h3>Secure Login Gateway</h3>
+                </div>
+                <form class="container-fluid">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ID Number</span>
+                    <input type="text" class="form-control" placeholder="ID Number" id="idNumber" onchange="handleID(this.value)">
+                  </div>
+                  <div id="hide" style="display: none;">
+                    <div class="input-group mb-5">
+                      <span class="input-group-text" id="basic-addon1">Answer &nbsp &nbsp&nbsp&nbsp</span>
+                      <input type="text" id="questionText" class="form-control" placeholder="What is your dog's name?" aria-label="Username" aria-describedby="basic-addon1" onchange="handleAnswer(this.value)">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">New password &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                      <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" id="newPassword" onchange="handlePassword(this.value)">
+                    </div>
+                    <div class="input-group mb-5">
+                      <span class="input-group-text" id="basic-addon1">New password again</span>
+                      <input type="password" class="form-control" placeholder="Password again" aria-label="Username" aria-describedby="basic-addon1" id="newPasswordAgain" onchange="handleAgainPassword(this.value)">
+                    </div>
+                  </div>
+                </form>
+                  <div class="alert alert-danger" role="alert" id="alertBox" style="display:none;">
+                    A simple danger alert—check it out!
+                  </div>
+                <button type="button" id="forgetButton" class="btn btn-success">Check ID</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+      if(window.localStorage.getItem("username")){
+        document.getElementById("idNumber").value = window.localStorage.getItem("idNumber");
+        handleID(window.localStorage.getItem("idNumber"));
+        document.getElementById("forgetButton").click();
+      }
+    </script>
+</body>
+</html>
