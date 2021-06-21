@@ -3,10 +3,9 @@ const app = express()
 app.use(express.json());
 
 const port = 3000
-const User = require("./UserModel");
 const DatabaseController = require("./DatabaseController");
 
-//DatabaseController.insertUser(11, "123", "Anan?", "evet");
+//DatabaseController.insertUser(21702962, "123", "Secret Question?", "Secret Answer.");
 
 app.use(express.static('../frontend'))
 
@@ -29,7 +28,6 @@ app.get('/auth', (req, res) => {
 app.post('/api/resetPassword', async (req, res) => {
     let response = await DatabaseController.getQuestion(req.body.id);
     if(response.isError()){
-            console.log("AA1");
         res.status(400);
         console.log(response.error);
         res.json({
@@ -39,14 +37,12 @@ app.post('/api/resetPassword', async (req, res) => {
         if(response.result.checkAnswer(req.body.answer)){
             let response2 = await DatabaseController.changePassword(parseInt(req.body.id), req.body.password);
             if(response2.isError()){
-            console.log("AA2");
                 res.status(400);
                 console.log(response2.error);
                 res.json({
                     error: response2.error
                 });
             }else{
-            console.log("AA3" + response2.result + " - " + req.body.id + " - " + req.body.password);
                 res.status(200);
                 res.json({
                     result: "You changed your password successfully, please login now"
@@ -54,7 +50,6 @@ app.post('/api/resetPassword', async (req, res) => {
             }
         }else{
             res.status(400);
-            console.log("AA3");
             console.log(response.error);
             res.json({
                 error: "The answer of the secret question is false"
